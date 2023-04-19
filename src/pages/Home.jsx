@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { getCategories } from '../services/api';
 
 class Home extends Component {
@@ -68,6 +69,12 @@ class Home extends Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
+          <Link
+            to="/cart"
+            data-testid="shopping-cart-button"
+          >
+            <button>Ver Carrinho</button>
+          </Link>
           {/* { searchList.length > 0
             ? (
               <p data-testid="home-initial-message">
