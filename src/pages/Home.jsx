@@ -91,9 +91,7 @@ class Home extends Component {
               </p>)
             : searchList
               .map((element, index) => (<Item
-                data-testid="product"
                 key={ index }
-                id={ element.id }
                 name={ element.title }
                 price={ element.price }
                 shipping={ element.shipping.free_shipping }

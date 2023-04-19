@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Item extends Component {
   render() {
-    const { id, name, price, shipping, thumbnail } = this.props;
+    const { name, price, shipping, thumbnail } = this.props;
     return (
       <div data-testid="product">
         <img src={ thumbnail } alt={ name } />
