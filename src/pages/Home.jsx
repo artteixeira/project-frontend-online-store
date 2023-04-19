@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { getCategories } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import Item from '../components/Item';
 
 class Home extends Component {
   state = {
     search: '',
     categories: [],
     categorie: '',
+    searchList: [],
+    start: true,
   };
 
   componentDidMount() {
@@ -19,6 +22,15 @@ class Home extends Component {
     });
   };
 
+  onClickSearchButton = async () => {
+    const { search, categorie } = this.state;
+    const result = await getProductsFromCategoryAndQuery(categorie, search);
+    this.setState({
+      searchList: result,
+      start: false,
+    });
+  };
+
   handleChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -28,7 +40,7 @@ class Home extends Component {
   };
 
   render() {
-    const { search, categories, categorie } = this.state;
+    const { search, categories, categorie, searchList, start } = this.state;
     return (
       <div>
         <div>
@@ -42,6 +54,8 @@ class Home extends Component {
           />
           <button
             data-testid="query-button"
+            type="submit"
+            onClick={ this.onClickSearchButton }
           >
             Pesquisar
           </button>
@@ -65,13 +79,15 @@ class Home extends Component {
             ))}
         </div>
         <div>
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-          {/* { searchList.length > 0
+          { start
             ? (
               <p data-testid="home-initial-message">
                 Digite algum termo de pesquisa ou escolha uma categoria.
+              </p>) : true }
+          { searchList.length <= 0
+            ? (
+              <p>
+                Nenhum produto foi encontrado
               </p>)
             : searchList
               .map((element, index) => (<Item
@@ -81,7 +97,8 @@ class Home extends Component {
                 name={ element.title }
                 price={ element.price }
                 shipping={ element.shipping.free_shipping }
-              />)) } */}
+                thumbnail={ element.thumbnail }
+              />)) }
         </div>
       </div>
     );
