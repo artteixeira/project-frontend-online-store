@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Item from '../components/Item';
 
@@ -43,6 +44,12 @@ class Home extends Component {
     const { search, categories, categorie, searchList, start } = this.state;
     return (
       <div>
+        <Link
+          to="/cart"
+          data-testid="shopping-cart-button"
+        >
+          <button>Ver Carrinho</button>
+        </Link>
         <div>
           <input
             data-testid="query-input"

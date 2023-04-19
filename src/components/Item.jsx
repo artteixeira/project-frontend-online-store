@@ -16,7 +16,6 @@ class Item extends Component {
 }
 
 Item.propTypes = {
-  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   shipping: PropTypes.bool.isRequired,
