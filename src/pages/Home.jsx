@@ -24,10 +24,11 @@ class Home extends Component {
   };
 
   onClickSearchButton = async () => {
-    const { search, categorie } = this.state;
-    const result = await getProductsFromCategoryAndQuery(categorie, search);
+    const { search, categorie, searchList } = this.state;
+    console.log(searchList.length);
+    const { results } = await getProductsFromCategoryAndQuery(categorie, search);
     this.setState({
-      searchList: result,
+      searchList: results,
       start: false,
     });
   };
@@ -91,19 +92,19 @@ class Home extends Component {
               <p data-testid="home-initial-message">
                 Digite algum termo de pesquisa ou escolha uma categoria.
               </p>) : true }
-          { searchList.length <= 0
+          { searchList.length === 0 && start !== true
             ? (
               <p>
                 Nenhum produto foi encontrado
-              </p>)
-            : searchList
-              .map((element, index) => (<Item
-                key={ index }
-                name={ element.title }
-                price={ element.price }
-                shipping={ element.shipping.free_shipping }
-                thumbnail={ element.thumbnail }
-              />)) }
+              </p>) : true }
+          { searchList
+            .map((element, index) => (<Item
+              key={ index }
+              name={ element.title }
+              price={ element.price }
+              shipping={ element.shipping.free_shipping }
+              thumbnail={ element.thumbnail }
+            />)) }
         </div>
       </div>
     );
