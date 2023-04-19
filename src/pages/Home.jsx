@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Home extends Component {
   state = {
     search: '',
-    searchList: [],
   };
 
   handleChange = ({ target }) => {
@@ -15,10 +14,16 @@ class Home extends Component {
   };
 
   render() {
-    const { search, searchList } = this.state;
+    const { search } = this.state;
     return (
       <div>
-        <input type="text" name="search" id="search" onChange={ this.handleChange } />
+        <input
+          type="text"
+          name="search"
+          id="search"
+          value={ search }
+          onChange={ this.handleChange }
+        />
         <div>
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
