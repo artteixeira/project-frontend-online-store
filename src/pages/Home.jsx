@@ -108,15 +108,16 @@ class Home extends Component {
                 Nenhum produto foi encontrado
               </p>) : true }
           { searchList
-            .map((element, index) => (<Item
-              key={ index }
-              id={ element.id }
-              ButtonCartFunc={ () => this.onClickAddCartButton(element) }
-              name={ element.title }
-              price={ element.price }
-              shipping={ element.shipping.free_shipping }
-              thumbnail={ element.thumbnail }
-            />)) }
+            .map((element, index) => (
+              <Item
+                key={ index }
+                id={ element.id }
+                ButtonCartFunc={ () => this.onClickAddCartButton(element) }
+                name={ element.title }
+                price={ element.price }
+                shipping={ element.shipping.free_shipping }
+                thumbnail={ element.thumbnail }
+              />)) }
         </div>
       </div>
     );
