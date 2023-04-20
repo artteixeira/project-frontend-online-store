@@ -12,7 +12,7 @@ class Item extends Component {
             <img src={ thumbnail } alt={ name } />
             <p>{name}</p>
             <p>{price}</p>
-            { shipping ? <p>Frete Gratis!</p> : true }
+            { shipping ? <p data-testid="free-shipping">Frete Gratis!</p> : true }
           </div>
         </Link>
         <button
