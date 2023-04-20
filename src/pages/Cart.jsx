@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ItemCard from '../components/ItemCart';
+import ItemCart from '../components/ItemCart';
 
 class Cart extends Component {
   state = {
@@ -30,7 +30,7 @@ class Cart extends Component {
         { cartList <= 0 ? (
           <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>) : (
           cartList.map(({ title, price, availableQuantity }, index) => (
-            <ItemCard
+            <ItemCart
               key={ index }
               title={ title }
               price={ price }

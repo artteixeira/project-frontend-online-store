@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class ItemCard extends Component {
+class ItemCart extends Component {
   state = {
     quantity: 1,
     availableQuantity: 1,
@@ -76,11 +76,11 @@ class ItemCard extends Component {
   }
 }
 
-ItemCard.propTypes = {
+ItemCart.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   availableQuantity: PropTypes.number.isRequired,
   removeButton: PropTypes.func.isRequired,
 };
 
-export default ItemCard;
+export default ItemCart;
