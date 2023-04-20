@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class ItemCard extends Component {
   state = {
     quantity: 1,
-    availableQuantity: 0,
+    availableQuantity: 1,
   };
 
   componentDidMount() {
@@ -37,7 +37,7 @@ class ItemCard extends Component {
 
   render() {
     const { quantity } = this.state;
-    const { title, price } = this.props;
+    const { title, price, removeButton } = this.props;
     return (
       <div>
         <p data-testid="shopping-cart-product-name">{title}</p>
@@ -67,6 +67,7 @@ class ItemCard extends Component {
         <button
           type="button"
           data-testid="remove-product"
+          onClick={ removeButton }
         >
           Excluir
         </button>
@@ -78,6 +79,8 @@ class ItemCard extends Component {
 ItemCard.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  availableQuantity: PropTypes.number.isRequired,
+  removeButton: PropTypes.func.isRequired,
 };
 
 export default ItemCard;
