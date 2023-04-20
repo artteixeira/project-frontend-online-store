@@ -25,7 +25,7 @@ class Cart extends Component {
     const { cartList, quantity } = this.state;
     return (
       <div>
-        { cartList.length === 0 ? (
+        { cartList !== [] ? (
           <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>) : (
           cartList.map((element, index) => (
             <div key={ index }>
