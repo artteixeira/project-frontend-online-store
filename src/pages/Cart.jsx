@@ -2,16 +2,8 @@ import React, { Component } from 'react';
 
 class Cart extends Component {
   state = {
-    cartList: [],
     quantity: 1,
   };
-
-  componentDidMount() {
-    const cartList = JSON.parse(localStorage.getItem('cartList'));
-    this.setState({
-      cartList,
-    });
-  }
 
   handleChange = ({ target }) => {
     const { name } = target;
@@ -22,10 +14,12 @@ class Cart extends Component {
   };
 
   render() {
-    const { cartList, quantity } = this.state;
+    const { quantity } = this.state;
+    const cartList = JSON.parse(localStorage.getItem('cartList'));
+    console.log(cartList);
     return (
       <div>
-        { cartList !== [] ? (
+        { !cartList ? (
           <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>) : (
           cartList.map((element, index) => (
             <div key={ index }>
