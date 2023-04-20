@@ -10,7 +10,6 @@ class Home extends Component {
     categorie: '',
     searchList: [],
     start: true,
-    cartList: [],
   };
 
   componentDidMount() {
@@ -23,16 +22,6 @@ class Home extends Component {
     this.setState({
       [name]: value,
     }, this.onClickSearchButton);
-  };
-
-  onClickAddCartButton = (element) => {
-    this.setState((prevState) => ({
-      cartList: [...prevState.cartList, element],
-    }), () => {
-      const { cartList } = this.state;
-      console.log(cartList);
-      localStorage.setItem('cartList', JSON.stringify(cartList));
-    });
   };
 
   setCategories = async () => {
@@ -112,14 +101,12 @@ class Home extends Component {
               </p>) : true }
           { searchList
             .map((element, index) => (<Item
-              classe="ItemHome"
               key={ index }
               name={ element.title }
               price={ element.price }
               shipping={ element.shipping.free_shipping }
               thumbnail={ element.thumbnail }
-              id={ element.id }
-              ButtonCartFunc={ () => this.onClickAddCartButton(element) }
+              linkItem={ element.id }
             />)) }
         </div>
       </div>
