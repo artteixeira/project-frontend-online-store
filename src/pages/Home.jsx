@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Item from '../components/Item';
+import Header from '../components/Header';
 
 class Home extends Component {
   state = {
@@ -52,12 +52,7 @@ class Home extends Component {
     const { search, categories, categorie, searchList, start } = this.state;
     return (
       <div>
-        <Link
-          to="/cart"
-          data-testid="shopping-cart-button"
-        >
-          <button>Ver Carrinho</button>
-        </Link>
+        <Header />
         <div>
           <input
             data-testid="query-input"
@@ -111,6 +106,7 @@ class Home extends Component {
               price={ element.price }
               shipping={ element.shipping.free_shipping }
               thumbnail={ element.thumbnail }
+              linkItem={ element.id }
             />)) }
         </div>
       </div>
