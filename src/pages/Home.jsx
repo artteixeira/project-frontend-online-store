@@ -25,8 +25,11 @@ class Home extends Component {
   };
 
   onClickAddCartButton = (element) => {
+    const { title, price } = element;
+    const { available_quantity: availableQuantity } = element;
     const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
-    localStorage.setItem('cartList', JSON.stringify([...cartList, element]));
+    localStorage.setItem('cartList', JSON
+      .stringify([...cartList, { title, price, availableQuantity }]));
   };
 
   setCategories = async () => {
