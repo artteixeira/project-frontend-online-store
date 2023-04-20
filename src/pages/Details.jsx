@@ -24,6 +24,12 @@ class Details extends Component {
     });
   }
 
+  onClickAddCartButton = () => {
+    const { title, price } = this.state;
+    const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
+    localStorage.setItem('cartList', JSON.stringify([...cartList, { title, price }]));
+  };
+
   render() {
     const { title, url, price } = this.state;
     return (
@@ -36,6 +42,12 @@ class Details extends Component {
         />
         <p data-testid="product-detail-name">{title}</p>
         <p data-testid="product-detail-price">{price}</p>
+        <button
+          data-testid="product-detail-add-to-cart"
+          onClick={ this.onClickAddCartButton }
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }
