@@ -23,9 +23,8 @@ class Home extends Component {
     });
   };
 
-  onClickSearchButton = async () => {
-    const { search, categorie, searchList } = this.state;
-    console.log(searchList.length);
+  handleClick = async () => {
+    const { search, categorie } = this.state;
     const { results } = await getProductsFromCategoryAndQuery(categorie, search);
     this.setState({
       searchList: results,
@@ -63,7 +62,7 @@ class Home extends Component {
           <button
             data-testid="query-button"
             type="submit"
-            onClick={ this.onClickSearchButton }
+            onClick={ this.handleClick }
           >
             Pesquisar
           </button>
@@ -81,6 +80,7 @@ class Home extends Component {
                   name="categorie"
                   type="radio"
                   value={ element.id }
+                  onClick={ this.handleClick }
                 />
                 { element.name }
               </label>
