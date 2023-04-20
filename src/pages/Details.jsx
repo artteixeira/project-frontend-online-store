@@ -8,6 +8,7 @@ class Details extends Component {
     title: '',
     url: '',
     price: '',
+    availableQuantity: 0,
   };
 
   async componentDidMount() {
@@ -16,18 +17,21 @@ class Details extends Component {
     const { id } = params;
     const details = await getProductById(id);
     const { title, price, pictures } = details;
+    const { available_quantity: availableQuantity } = details;
     const { url } = pictures[0];
     this.setState({
       title,
       url,
       price,
+      availableQuantity,
     });
   }
 
   onClickAddCartButton = () => {
-    const { title, price } = this.state;
+    const { title, price, availableQuantity } = this.state;
     const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
-    localStorage.setItem('cartList', JSON.stringify([...cartList, { title, price }]));
+    localStorage.setItem('cartList', JSON
+      .stringify([...cartList, { title, price, availableQuantity }]));
   };
 
   render() {

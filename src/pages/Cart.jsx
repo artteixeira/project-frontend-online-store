@@ -4,7 +4,6 @@ import ItemCard from '../components/ItemCard';
 class Cart extends Component {
   render() {
     const cartList = JSON.parse(localStorage.getItem('cartList'));
-    console.log(cartList, 'estou no cart');
     return (
       <div>
         { !cartList ? (
