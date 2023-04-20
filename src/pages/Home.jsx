@@ -16,6 +16,14 @@ class Home extends Component {
     this.setCategories();
   }
 
+  onChangeAndClick = async ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      [name]: value,
+    }, this.onClickSearchButton);
+  };
+
   setCategories = async () => {
     const categories = await getCategories();
     this.setState({
@@ -24,8 +32,7 @@ class Home extends Component {
   };
 
   onClickSearchButton = async () => {
-    const { search, categorie, searchList } = this.state;
-    console.log(searchList.length);
+    const { search, categorie } = this.state;
     const { results } = await getProductsFromCategoryAndQuery(categorie, search);
     this.setState({
       searchList: results,
@@ -71,7 +78,6 @@ class Home extends Component {
         <div
           className="SideCategories"
           value={ categorie }
-          onChange={ this.handleChange }
         >
           { categories
             .map((element, index) => (
@@ -81,6 +87,7 @@ class Home extends Component {
                   name="categorie"
                   type="radio"
                   value={ element.id }
+                  onClick={ this.onChangeAndClick }
                 />
                 { element.name }
               </label>
